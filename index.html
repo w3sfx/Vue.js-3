@@ -8,13 +8,21 @@
 </head>
 <body>
     <div id="app">
-        <h1>Vue js</h1>
+        <h1>{{ title }}</h1>
 
         <p>{{ name }} {{ lastName }}</p>
 
-        <img v-bind:src="product.image" v-bind:alt="product.title" style="max-width: 100px;">
+        <hr>
+        <h2>Carrinho {{ cart.length }}</h2>
 
-        <img :src="product2.image" :alt="product2.title" style="max-width: 100px;">
+        <ul>
+            <li v-for="(product, index) in products" :key="index">
+                <p>{{ product.title }}</p>
+                <img :src="product.image" :alt="product.title" style="max-width: 100px;">
+                <strong v-if="product.stars > 0">{{ product.stars }}</strong>
+                <a href="#" v-on:click.prevent="addCart(product)">ADD CART</a>
+            </li>
+        </ul>
     </div>
 
     <script src="https://unpkg.com/vue@3"></script>
